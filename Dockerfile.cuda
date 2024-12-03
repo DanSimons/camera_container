@@ -1,0 +1,14 @@
+FROM osrf/ros:noetic-desktop-full
+
+RUN apt-get update \
+  && apt-get install -y \
+  vim \
+  git \
+  ros-noetic-usb-cam \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
+
+COPY calibration.yml /root/.ros/camera_info/
+
+CMD ["bash"]

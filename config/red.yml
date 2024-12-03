@@ -1,0 +1,12 @@
+Camera.RGB: 1
+Camera.fps: 30
+Camera.height: 480
+Camera.type: pinhole
+Camera.width: 640
+Camera1.cx: 324.1987763662889
+Camera1.cy: 228.7892484192884
+Camera1.fx: 431.5741425595157
+Camera1.fy: 432.5318956204437
+File.version: '1.0'
+Stereo.ThDepth: 40.0
+Stereo.b: 0.07732
