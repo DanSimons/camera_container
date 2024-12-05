@@ -10,3 +10,5 @@ docker run \
   --ipc=host \
   --name=roscore \
   ros:noetic bash -c $container_name
+
+docker exec -it $container_name bash -c "echo 'source /opt/ros/noetic/setup.bash' >> /root/.bashrc"

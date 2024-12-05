@@ -9,6 +9,10 @@ RUN apt-get update \
 
 RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
 
-COPY calibration.yml /root/.ros/camera_info/
+COPY ros_entrypoint.sh /ros_entrypoint.sh
+RUN chmod +x  /ros_entrypoint.sh
+ENV ROS_DISTRO=noetic
+
+ENTRYPOINT [ "/ros_entrypoint.sh" ]
 
 CMD ["bash"]
