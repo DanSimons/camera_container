@@ -5,16 +5,16 @@ xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
 
 xhost +local:docker
 
-container_name="rviz"
+container_name="rviz2"
 # remove old containers
 if docker ps -a --format '{{.Names}}' | grep -q $container_name; then
   echo "removing existing container: $container_name"
   docker rm -f $container_name
 fi
 
-docker run -it \
+docker run -id \
   --network=host \
   --ipc=host \
   --env=DISPLAY \
-  --name "$container_name" \
-  osrf/ros:noetic-desktop-full  bash -c "export export LIBGL_ALWAYS_SOFTWARE=1 && export MESA_LOADER_DRIVER_OVERRIDE=llvmpipe && source /opt/ros/noetic/setup.bash && rosrun rviz rviz"
+  --name "$conatiner_name" \
+  osrf/ros:humble-desktop-full  bash -c "source /opt/ros/humble/setup.bash && ros2 run rviz2 rviz2"
