@@ -1,6 +1,5 @@
 # UI permisions
 serial=${1-18475182}
-# serial=${1-18475176}
 
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
@@ -19,7 +18,7 @@ fi
 
 
 docker run \
-  -it \
+  -d \
   --net=host \
   --ipc=host \
   --privileged \
@@ -30,22 +29,5 @@ docker run \
   -e "XAUTHORITY=$XAUTH" \
   -v /dev:/dev \
   -v `pwd`/launch:/root/launch \
-  -v `pwd`/config:/root/config \
-  humble:flir bash
-  #-c "ros2 launch spinnaker_camera_driver driver_node.launch.py /flir_camera/image_raw/:=/$container_name/image_raw/ __name:=flir-$serial serial:=\"'$serial'\""
-
-
-  # docker run \
-#   -td \
-#   --name $container_name \
-#   --network=host \
-#   --ipc=host \
-#   --memory=4g \
-#   --memory-swap=-1 \
-#   -v /tmp/.X11-unix/:/tmp/.X11-unix/:rw \
-#   --env=DISPLAY \
-#   --device=/dev/video$cam:/dev/video0 \
-#   noetic:flir bash
-
-
+  humble:flir bash -c "ros2 launch /root/launch/driver_b_node.launch.py __name:=flir-$serial serial:=\"'$serial'\""
 
